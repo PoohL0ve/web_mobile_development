@@ -111,3 +111,73 @@ switch (semester_month) {
         result = "A long break";
 }
 ```
+**To run tests use npx jest filename**
+
+## Regular Expressions
+Regex allows one to search through a string of text.
+```js
+let finality = " You are annoying and confusing. We cannot be friends";
+
+// Simple regex
+/an/gi // finds all an strings and case-insensitive
+/e+/g // match one or more e's
+/e+a?/g // a is optional
+/re*/g // matches all r's but re is optional
+
+/.s/g // matches one character before the s
+/\./g // matches all periods
+```
+More simple matches:
+- *\w*: all words
+- *\s*: white space or not a character
+- *\S*: not a whitespace
+- *\W*: not a character
+
+```js
+// Match a specific number of characters
+/\w{3}/g // 3 and more characters
+/\w{3, 6}/g // 3-6 characters long
+
+// Ranges
+/[a-zA-Z]at/g // any string that ends with at
+
+// Grouping with or
+/(S|s)he/g // S or s and ends with he
+
+// Test the beginning and end
+/^A/g // Test the entire statement to see if it starts with A
+/^A/gm // locates each line that starts with A
+/\.$/gm 
+
+// Locate things before and behind
+/(?<=[tT]he)./g // locates what comes after The or the
+/(?<![tT]he).//g // invert
+/.(?=an)/g // all characters followed by an
+
+// Match for numbers
+/\d{8}/gm // matches eight numbers in a row
+/\d{3}[ -]?\d{3}[ -]?\d{4}/gm
+// Groups can be named
+/(?<areacode>\d{3})[ -]?(\d{3})[ -]?(\d{4})/gm
+```
+
+## Functions
+They are used to make code simpler as they are reusable
+```js
+function findIt(item) {
+    return "The " + item + " was found.";
+}
+
+// Default unknown value
+function findNumber(number) {
+    return (number ?? "Number not found");
+}
+
+// Function expression
+const bye = function() {
+    console.log("Bye");
+}
+
+// Arrow function
+const bye = () => console.log("Bye");
+```

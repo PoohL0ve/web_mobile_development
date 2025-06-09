@@ -181,3 +181,54 @@ const bye = function() {
 // Arrow function
 const bye = () => console.log("Bye");
 ```
+
+## Loops
+Loops are useful for dealing with repetition. There are several types of loops in JS:
+```js
+while (condition) {
+    // code
+    // variable that increments or decrements
+}
+
+do {
+  // loop body
+} while (condition);
+
+for (begin; condition; step) {
+  // ... loop body ...
+}
+
+// Works with objects
+for (key in object) {
+  // executes the body for each key among object properties
+}
+
+// Works with arrays
+for (let fruit of fruits) {
+  alert( fruit );
+}
+```
+
+## Arrays
+Arrays are lists objects and have several methods:
+```js
+const values = [3, 5, 6, 7];
+values.push(9)
+
+// The map method applies a function to each element
+const squaredNumbers = values.map((value) => {
+    return Math.pow(value, 2)
+})
+
+// The filter method filters
+const filteredValues = values.filter((value) => {
+    return value % 2 === 0
+})
+
+// The reduce simplifies the values to a single one
+const total = values.reduce((runningTotal, value) => {
+    return runningTotal + value
+}, 0)
+// Other common methods: find, some, every, includes
+```
+Arrays can have different types of elements.

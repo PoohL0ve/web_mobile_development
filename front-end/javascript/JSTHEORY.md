@@ -1,12 +1,26 @@
 JavaScript is the most popular web programming language, created by **Brendan Eich**.
+Run commands in the broswer using:
+- **MAC**: Cmd+Option+I/J
+- **Windows/Linux**: CTRL+SHIFT+I/J
 
-Comments can be written in two ways in JavaScript:
+The **parseInt()** is used to convert a string to an integer.
+
+Comments are used to explain the *why and what* and can be written in three ways in JavaScript:
 ```js
 // Single ling comment
 /*
 * Multi-line comment
 * This can also be nested
 */
+
+/** 
+ * Adds more details
+*/
+```
+The **typeof** operator can be used with or without parentheses:
+```js
+console.log(typeof(8));
+console.log(typeof 8);
 ```
 Additionally, to avoid common issues with servers and engines, the "js" file can start with the *"use strict";* string. 
 
@@ -43,6 +57,17 @@ JS has 5 main operator types:
     - **typeof**: returns the data type of a value or variable - type of "Name"
     - **instanceof**: returns true or false: 123 instanceof Number
 
+The multiplication operator turns a string to a number but combines strings for addition:
+```js
+var a = "5";
+var b = 2;
+var c = "3";
+console.log((a * b) + (b * c)); // 16
+console.log(b + c); // "23"
+console.log(a + b); // "52"
+```
+Priority goes: 
+- Parentheses -> Unary -> Multiplication/Division -> +/-
 ## Data Types and Structures
 **String** is a very common data type that has several methods that can be used:
 ```js
@@ -232,3 +257,38 @@ const total = values.reduce((runningTotal, value) => {
 // Other common methods: find, some, every, includes
 ```
 Arrays can have different types of elements.
+
+## Document Object Model
+The DOM is a tree like structure that respresents the elements of a webpage in the form of nodes. It has a parent child relationship with the elements.
+```js
+// Use selectors to target elements: querySelector, querySelectorAll
+const container = document.querySelector("#container");
+// selects the first child of #container => .display
+const display = container.firstElementChild;
+const controls = document.querySelector(".controls");
+// selects the prior sibling => .display
+const display = controls.previousElementSibling;
+// firstElementChild lastElementChild
+```
+The node list returned from the querySelectorAll method can be converted to an array using **Array.from()**. Simple operations:
+```js
+// Create an element
+const para = document.createElement("p");
+// Append Nodes
+parentNode.appendChild();
+parentNode.insertBefore(newNode, referenceNode);
+
+// Remove Nodes
+parentNode.removeChild();
+```
+Events are actions that occur on the webpage through:
+- functions on HTML elements
+- using methods like onclick
+- using event listeners
+```js
+// Using event listeners
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", () => {
+  alert("Hello World");
+});
+```

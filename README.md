@@ -10,7 +10,9 @@ Common toolss used in frontend development:
 - Frameworks: React, ReactNative, Flutter
 - Package Managers: Npm
 - Version Control: Git
-  
+- Icons (Free) - Material, Feather Icons
+
+View source code: CMD + Option (Mac) and CTRL + U.
 # Set Up
 Inside the main project or app folder create two folders: frontend and backend. Then run the command npm init -y which commences the node.js project and creates a package.json file which contains important information:
 - Project name;

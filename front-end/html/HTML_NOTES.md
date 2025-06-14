@@ -75,3 +75,70 @@ The audio tag is used to add audio files to a webpage:
 </audio>
 <!-- Other attributes: controls, loop, muted, autoplay -->
 ```
+### Quotations
+There are different quotes that can be used:
+```html
+<!--- Inline --->
+<p><q>Get out of my life!</q>That's what she said</p>
+<!--- Block --->
+<blockquote></blockquote>
+<!--- Citation --->
+<p><q>All is well</q>, <cite>(Ris, 2025)</cite></p>
+```
+The **q and blockquote** tags can have a cite attribute that provides a URL.
+
+Phrase tags:
+```html
+<!-- Sample or output text -->
+ <samp>Error: this cannot be done!</samp>
+<!-- Represents user's input -->
+ <kbd>CTRL + C</kbd>
+<!-- Represents computer code -->
+ <code>String name = "Sophie";</code>
+<!-- Sample or output text -->
+```
+The **i** tag should only be used when the others do not provide semantic advantages:
+- **em**: emphasis
+- **strong**: importance
+- **mark**: relevance
+- **cite**
+- **dfn**: definition of a term
+### Tables
+They are enclosed in the **table** tag. Each cell is represented by the *td* tag and will be next to each other unless a *tr* tag is used to represent a row. The *th* tag is used for headers. The **caption** tag is normally placed below the opening table tag. The borders are invisible by default.
+```html
+<table border="2"></table>
+<!-- Allow to span rows and columns -->
+ <th rowspan="2"></th>
+ <th colspan="2"></th>
+```
+The **tfoot, thead, and tbody** tag are great for adding CSS styling to a table. The *scope* attribute in the *th* tag helps with accessibility. The **id and headers** attributes are used to make references.
+
+### Videos
+When working with videos only use the file that is stored on your computer, otherwise the link will direct the user to another website.
+```html
+<video control src="video.mp4"></video>
+<!-- Other attributes -->
+<video controls src="video.mp4" autoplay width="450px" height="300px" muted></video>
+```
+Videos can also be in webm and ogg; however, some browsers may not support them.
+
+### Footer elements
+The **abbr** is used for abbreviations and helps with SEO by providing information:
+```HTML
+<abbr title="Keep it simple, stupid">KISS</abbr>
+<hr/> <!--Horizontal line breaks -->
+<abbr title="Don't repeat yourself">DRY</abbr>
+```
+The **address** tag is used for contact information with the **br** tag providing line breaks:
+```html
+<address>
+    #12 Lover's Lane <br/>
+    Diamond Avenue <br/>
+    Mystery Island <br/>
+    Somewhere in Paradise
+</address>
+```
+The bi-directional override **bdo** tag is used to send HTML text in the opposite direction, using the *dir* attribute:
+```html
+<bdo dir="rtl">It's Over</bdo> <!-- Also (ltr) -->
+```

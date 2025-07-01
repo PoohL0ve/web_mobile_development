@@ -1,0 +1,121 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="stylesheet" href="formstyle.css">
+    <title>BLLU - Signup</title>
+</head>
+<body>
+    <div class="container">
+        <div class="night-sky">
+            <img src="bllu.png" alt="BLLU Logo" class="logo"/>
+            <h3>Black Lesbian Link Up</h3>
+        </div>
+
+        <!-- Form Section -->
+         <div class="form-section">
+            <form action="#" method="post">
+                <h2>Sign Up Here</h2>
+                <p>Don't miss out on building and being part of a supportive community!</p>
+
+                <!-- Fields for the user to interact with -->
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person-circle"></ion-icon>
+                    </span>
+                    <input type="text" name="user-name" id="user-name" required 
+                    pattern="^[a-zA-Z](?=(?:[^0-9]*[0-9]){0,2}[^0-9]*$)[a-zA-Z0-9]{0,19}$"
+                    title="Username cannot be more than 20 characters, must start with a letter and can only contain two numbers at most.">
+                    <label for="user-name">Username</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="first-name" id="first-name" required pattern="^[a-zA-Z]{3, 35}$"
+                    title="Can only contain letters, no less than 3 and no more than 35 characters.">
+                    <label for="first-name">First Name</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="last-name" id="last-name" required pattern="^[a-zA-Z]{3, 35}$"
+                    title="Can only contain letters, no less than 3 and no more than 35 characters.">
+                    <label for="last-name">Last Name</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" name="email" id="email" required>
+                    <label for="email">Email</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="call"></ion-icon>
+                    </span>
+                    <input type="number" name="phone-number" id="phone-number" pattern="^[0-9]{7, 11}$">
+                    <label for="phone-number">Phone Number</label>
+                 </div>
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" id="password" required
+                    pattern="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,20}$"
+                    title="Password must be between 8 and 20 characters long and must contain letters, symbols, and numbers.">
+                    <label for="password">Password</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="confirm-password" id="confirm-password" required>
+                    <label for="password">Confirm Password</label>
+                 </div>
+
+                 <!-- Check Boxes -->
+                <fieldset>
+                    <legend>The following must be agreed upon 
+                        <span><ion-icon name="arrow-down-circle"></ion-icon></span>
+                    </legend>
+                    <div class="checkbox-group>">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="terms" id="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                        </div>
+
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="marketing" id="marketing" required>
+                            <label for="marketing">I agree to receive emails about events and updates.</label>
+                        </div>
+                    </div>
+                </fieldset> 
+
+                <button type="submit">Register</button>
+
+                <div class="login">
+                    <p>Already have an account? <a href="#">Login</a></p>
+                </div>
+            </form>
+         </div>
+    </div>
+
+    <!-- Icons script for project -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+
+<!--
+Night sky info: Photo by <a href="https://unsplash.com/@melanieweidmann_photography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Melanie Weidmann</a> on <a href="https://unsplash.com/photos/black-and-white-stars-in-the-sky-9he1mSaFsQg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+-->

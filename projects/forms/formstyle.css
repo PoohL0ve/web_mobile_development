@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #0F0F0F;
+    color: #E0E0E0;
+    font-size: clamp(1rem, calc(0.75rem * 1.5vw), 2rem);
+    line-height: calc(1.2rem + 2vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    /*outline: 2px solid red;*/
+}
+
+
+.container {
+    /*outline: 2px solid yellow;*/
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    background-image: linear-gradient(to right, #66023C, #F6A192);
+    flex-wrap: wrap;
+    overflow: hidden;
+    
+}
+
+.night-sky {
+    /*outline: 2px solid pink;*/
+    background-image: url("night-sky.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    flex: 1;
+    min-width: 300px;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Eliminates distortion */
+    max-width: none;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #66023C, #F6A192);
+}
+
+.form-section {
+    /*outline: 2px solid blue;*/
+    flex: 1.5;
+    background: #2D033B;
+    min-width: 300px;
+    padding: 40px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    
+}
+
+.form-section h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #F6A192;
+}
+
+.form-section p {
+    text-align: center; 
+    margin-bottom: 20px;
+}
+
+.input-box {
+    position: relative;
+    outline: 2px solid black;
+    width: 100%;
+    margin: 15px auto;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #E0E0E0;
+    transition: 0.3s ease;
+    pointer-events: none;;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -15px;
+    font-size: 0.8em;
+    color: #F6A192;
+}
+
+.input-box input {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    /*outline: 2px solid darkgreen;*/
+    border: none;
+    font-size: 1rem;
+    padding: 0, 35px, 0, 5px;
+    color: #E0E0E0;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #E0E0E0;
+    font-size: 1.2rem;
+    
+}
+
+fieldset {
+    border: none;
+    font-size: 0.7rem;
+    /*outline: 2px solid purple;*/
+    margin: 20px 0;
+    padding: 15px;
+}
+
+legend {
+    color: #F6A192; 
+    font-weight: bold;
+    padding: 0 10px; 
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    /*outline: 2px solid purple;*/
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px; /* Ensure it maintains its size */
+    accent-color: #F6A192; /* Color the checkbox */
+}
+
+.checkbox-item label {
+    position: static; /* Override absolute positioning from .input-box label */
+    transform: none; /* Override transform */
+    color: #E0E0E0; /* Default label color */
+    font-size: 0.9em; /* Adjust label font size */
+}
+
+a {
+    text-decoration: none;
+    color: #E0E0E0;
+}
+
+a:hover {
+    text-decoration: solid underline;
+    color: #D2B474;
+}
+
+button {
+    width: 80%;
+    height: 45px;
+    font-size: 1rem;
+    background: #003366;
+    color: whitesmoke;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0 auto;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #004080; /* Slightly darker on hover */
+}
+
+.login {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 10px auto;
+}

@@ -39,7 +39,7 @@ Lists can have the type attribute which can change it. The other type of list el
     <dd>Salt</dd>
 </dl>
 ```
-
+Unordered lists can have four types: *disk, circle, square, and none*. They can be implemented with the CSS attribute **list-style-type**.
 
 Page navigation uses the **nav** element which can use the id and # to move from a link to a section on a page:
 ```html
@@ -141,4 +141,64 @@ The **address** tag is used for contact information with the **br** tag providin
 The bi-directional override **bdo** tag is used to send HTML text in the opposite direction, using the *dir* attribute:
 ```html
 <bdo dir="rtl">It's Over</bdo> <!-- Also (ltr) -->
+```
+### Embed websites and maps
+The inline frame **iframe** tag is used to embed websites and maps on a page.
+```html
+<iframe src title></iframe>
+```
+It can also have attributes like width, height, style, and target.
+
+### Forms
+The **form** element is a container element that takes 2 attributes: **action**, which tells the form where to send the data and **method** which tells the browser which HTTP request method to use to submit the form.
+```html
+<form attribute="makefriends.com" method="post"></form>
+```
+Form **control elements** allow users to interact with a form:
+- **label**: states what type of data needs to be collected and must be link to an input field with the *for* attribute.
+- **input**: allows the user to type or select and uses to *id* attribute to connect with the specific label. Has several attributes:
+    - *type*, *name* (helps backend), *password*, *placeholder*
+- **textarea**: can accept *rows* and *cols*
+
+Selection elements can have an option group but must always have a value. Additionally, it can have a predetermined selection:
+```html
+<!-- Drop Down Menu -->
+<select name="shows">
+    <optgroup label="comedy">
+        <option value="the-simpsons" selected>The Simspons</option>
+        <option value="family-guy">Family Guy</option>
+        <option value="bobs-burger">Bob's Burger</option>
+    </optgroup>
+    <optgroup label="comedy"></optgroup>
+</select>
+```
+Radio buttons and checked boxes can be used with the *type* attribute of the input element. They can have pre-selected options with the *checked* attribute. The **button** element has a *type* attribute that can accept *submit, reset, button (generic (JS))*.
+
+The *fieldset* element helps group logical and relatable form elements. The *legend* element is used to give fieldsets a heading or caption.
+```html
+<fieldset>
+    <legend>What drink would you like?</legend>
+    <div>
+        <input type="radio" name="drink" id="coffee" value="coffee">
+        <label for="coffee">Coffee</label>
+    </div>
+</fieldset>
+<div>
+  <label for="username">Name: <span aria-label="required">*</span></label>
+  <input id="username" type="text" name="username" required />
+</div>
+```
+The textarea element can have validations like *minlength and maxlength*. Number input can have a min and max attributes. Also there can be pattern validations. Emails automatically have pattern matching from browsers. Forms can use CSS to be valid or invalid styling (input:valid).
+```html
+<form action="#" method="get">
+  <div>
+    <label for="zip_code">Postal / Zip Code:</label>
+  </div>
+
+  <input type="text" id="zip_code" name="zip_code" pattern="(\d{5}([\-]\d{4})?)" title="Please enter a valid zip code, example: 65251" placeholder="65251" required>
+  
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
 ```

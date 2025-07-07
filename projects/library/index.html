@@ -1,0 +1,65 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.ico">
+    <script src="script.js" defer></script>
+    <title>Open Library</title>
+</head>
+<body>
+    <div class="vintage-background">
+        <header>
+            <h2>Open Library</h2>
+            <p>A free place for all your reading needs!</p>
+            <button class="add-book" onclick="openBookDialog()">Add Book</button>
+        </header>
+
+        <main id="booksContainer" class="booksGrid"></main>
+
+        <dialog id="booksDialog">
+            <div class="dialogContent">
+                <div class="dialogHeader">
+                    <h2 class="dialogTitle" id="dialogTitle">Add New Book Details</h2>
+                    <button class="close-btn" onclick="closeBookDialog()">x</button>
+                </div>
+
+                <!-- Form Elements for the new books to be added -->
+                <form id="bookForm">
+                    <div class="formGroup">
+                        <label for="bookTitle" class="formLabel" id="titleLabel">Enter the book's name</label>
+                        <input type="text" id="bookTitle" class="formInput" oninput="hideLabel('titleLabel')"required>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="bookAuthor" class="formLabel" id="authorLabel">Author's full name</label>
+                        <input type="text" id="bookAuthor" class="formInput" pattern="[a-zA-z]{3, 45}" title="Please enter 3 - 45 letters" oninput="hideLabel('authorLabel')" required>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="bookGenre" class="formLabel" id="genreLabel">Book Genre</label>
+                        <input type="text" id="bookGenre" class="formInput" pattern="[a-zA-Z]{4, 20}" title="Please enter 4 -20 characters" oninput="hideLabel('genreLabel')" required>
+                    </div>
+
+                    <div class="smallClass">
+                        <label for="haveRead" class="smallLabel">Have you read this book?</label>
+                        <input types="text" id="haveRead" class="smallInput" pattern="[Yy][Ee][Ss]|[Nn][Oo]" title="Please enter 'Yes' or 'No'" required>
+                    </div>
+
+                    <div class="smallClass">
+                        <label for="pages" class="smallLabel">Number of Pages:</label>
+                        <input type="number" id="pages" class="smallInput" min="1" max="20000" required>
+                    </div>
+
+                    <div class="formActions">
+                        <button type="button" class="cancel-btn" onclick="closeBookDialog()">Cancel</button>
+                        <button type="submit" class="save-btn">Save Book</button>
+                    </div>
+                </form> 
+            </div>
+        </dialog>
+    </div>
+</body>
+</html>

@@ -205,7 +205,26 @@ const bye = function() {
 
 // Arrow function
 const bye = () => console.log("Bye");
+const simple = text => { return text}; // one parameter = no ()
+const simeple2 = (t) => t; // no {}
 ```
+An **anonymous** function doesn't have a name and can be created the traditional way or using a function expression. It is normally used immediately. **Hoisting** occurs when function declarations are moved to the top of where they were created and can be executed.
+```js
+// Using grouping operator
+(function () { // Call immediately
+  console.log('Hello world!');
+})(); // Any argument can be placed
+
+(function (text) {
+  console.log(text);
+})("Hello world!");
+
+```
+
+Common built-in functions:
+- **isNaN()**
+- **isFinite()**
+- **parseFloat(), parseInt()**
 
 ## Loops
 Loops are useful for dealing with repetition. There are several types of loops in JS:
@@ -255,14 +274,50 @@ const total = values.reduce((runningTotal, value) => {
     return runningTotal + value
 }, 0)
 // Other common methods: find, some, every, includes
+
+Array.isArray(obj); // true or false
+const lastItem = colors[colors.length - 1]; // last item
 ```
 Arrays can have different types of elements.
+Other Array Methods include:
+```js
+// Fill with anything: optional start and end
+const numbers = new Array(5).fill(2, 0, 3) // last exclusive
+
+// From converts an iterable to an array
+// Array.from(object, MapFunction, thisValue)
+Array.from([3, 5, 7], x => x * x); // [9, 25, 49]
+```
+The **Array.of()** method can be used to create an array. It is different from using the constructor for integers, in that if one integer is passed it will create an array of a single integer and not undefined elements.
+
+The **forEach()** method has two arguments in callback and a placeholder for the *this* keyword to the callback.:
+```js
+const arrayFruit = ["pineapples", "oranges", "apples"];
+arrayFruit.forEach(function(value) {
+  console.log("Today I ate " + value);
+});
+
+// Using other arguments of the callback
+function showItem(item, index, array) {
+  console.log("My value is " + item + ". I’m the " + index + " element of array " + array);
+}
+arrayFruit.forEach(showItem);
+```
 
 ## Document Object Model
 The DOM is a tree like structure that respresents the elements of a webpage in the form of nodes. It has a parent child relationship with the elements.
 ```js
+// Get elements by class, id, property
+const header = document.getElementById("header");
+// Returns an HTMLCollection list
+const showSome = document.getElementsByClassName("show-some");
+const listElements = document.getElementsByTag("li");
+
 // Use selectors to target elements: querySelector, querySelectorAll
-const container = document.querySelector("#container");
+const container = document.querySelector("#container"); // first element match
+// Returns a NodeList which can use forEach method
+const para = document.getSelectorAll(".container p");
+
 // selects the first child of #container => .display
 const display = container.firstElementChild;
 const controls = document.querySelector(".controls");
@@ -271,6 +326,13 @@ const display = controls.previousElementSibling;
 // firstElementChild lastElementChild
 ```
 The node list returned from the querySelectorAll method can be converted to an array using **Array.from()**. Simple operations:
+
+Modification methods include:
+- **innerHTML**: returns a HTML string, can also be used to delete in content by setting it to an empty string
+- **textContent**: used for plain text; do not use tags with it
+- **createElement, createTextNode**: elements and texts
+- **appendChild**: accepts a node and places it last to an element
+- **remove**: deletes an element
 ```js
 // Create an element
 const para = document.createElement("p");
@@ -285,10 +347,131 @@ Events are actions that occur on the webpage through:
 - functions on HTML elements
 - using methods like onclick
 - using event listeners
+
+Event listeners allows you to respond to various user interactions by attaching event handlers to specific targets. It takes two main parameters, the event to listen for, the function to add to it, and an optional third argument - specify options.
 ```js
 // Using event listeners
 const btn = document.querySelector("#btn");
 btn.addEventListener("click", () => {
   alert("Hello World");
 });
+```
+There are numerous events and some can be can be categorised as:
+- **mouse**: click, dblclick, contextmenu (right-mouse), mouseenter (mouse moves towards the element), mouseleave, mousemove
+- **keyboard**: keydown (any key), keyup (key released), keypress (except Shift, Fn, or CapsLock)
+- **focus**: focus, blur (looses focus)
+- **form**: submit, focus, blur, change
+- **window**: load, resize, scroll
+
+Sometimes an event may need to be removed after a condition has been met. The method uses the same parameters as the add event:
+```js
+btn.removeEventListener( "click", () => {alert( "Hello World" ); });
+```
+
+## Object and Object Constructors
+An object can be defined using the object literal and data can be retrieved by using the **dot notation** or the **bracket notation**.
+```js
+/* Create and Access data from an object */
+const player = {
+    name = "Palmer",
+    age = 22,
+    "main style": function() {
+        return "Assist a goal!";
+    }
+};
+
+player.name // Cole
+player["main style"] // Assist a goal!
+
+delete player.age;  // deletes a property
+```
+An **object constructor** is a function that starts with a capital letter and uses the **this** keyword. To create new objects using the constructor the **new** keyword must be used.
+```js
+function Player(name, age) {
+    // Property to ensure the new keyword is used
+    if (!new.target) {
+        throw Error("You must use the new keyword");
+    }
+    this.name = name;
+    this.age = age;
+    this.favouriteFoot = function() {
+        console.log("Left Foot");
+    };
+}
+
+const noni = new Player("Noni", 23);
+noni.favouriteFoot() // Left Foot
+
+// Can remove the function word
+let person = {
+  greetings() {
+    console.log("Hello");
+  }
+};
+```
+### Prototypes
+All objects in JS has a prototype. A **Prototype** is an orginal object that all objects inherits from. Properties and methods can be attached to objects by using the prototype:
+```js
+Player.prototype.sayHello = function(){
+    return "Hello, I'm a footballer";
+}
+```
+The **Object.getPrototype()** method can be used to get an object's prototype. The **valueOf()** methods allows us to know the values of an object. The **hasOwnProperty()** states whether an object has its own property.
+```js
+noni.valueOf();
+noni.hasOwnProperty("valueOf"); // false
+Object.prototype.hasOwnProperty("valueOf"); // true
+```
+The **Object.setPrototypeOf()** takes two arguments where the first one is the object that inherits and the second is the object that has to be inherited from.
+
+## Working with Time and Data
+**Scheduling a Call** is simply providing the time when something should occur. The **setTimeout()** function is used for that. The method can be in the form of function, time, and argument for a method like *setTimeout(call, 2000, "you")*.
+```js
+// Schedule a call for 5 seconds after
+setTimeout(function() {
+    console.log("Miss Me");
+}, 10000); // ten seconds delay
+
+clearTimeout(missMe) // clear resources
+```
+The **setInterval()** function is used to repeat a function:
+```js
+function alarm(time) {return `It's ${time}! Wake Up Sleepy Head!`;}
+let wakeup = setInterval(alarm, 5000, 8); // Every 5 seconds for 8 o'clock
+
+// Stop interval
+clearInterval(wakeup) // saves resources
+```
+Always use both functions with a variable so that the functions can be cleared.
+
+The time value for the **Date()** object starts from **January 1970**. The *ISO Standard* is used for dates in the form *(YYYYMMDD)*. You can also use:
+- *short-format*: 07/09/2025
+- *long-format*: Jul 09 2025
+
+The parameters are year, month, day, hour, minute, second, and millisecond, where the month starts at 0; thus, January is 0.
+```js
+let newDate = new Date(2025, 07, 09, 12, 46, 10, 5);
+let march = new Date(2025, 2); // March 1st
+```
+|Date Methods                   |
+|:-----------------------------:|
+|`getFullYear` - retrieves the year|
+|`getMonth`|
+|`getDate` - retrieves the day|
+|`getHours`|
+|`getMinutes`|
+|`getSeconds`|
+|`getMiliiseconds`|
+
+## Dealing with Randomness
+The **Math.random()** method is used to generate random numbers. It returns a float between 0 (inclusive) and 1 (exclusive). To get larger numbers it can be multiplied by the maximum value for the range of numbers.
+```js
+Math.random() * 10; // random float from 0 - 10
+
+// Return an integer by rounding down
+Math.floor(Math.random() * 10);
+// Using ranges
+Math.floor(Math.random() * (maxValue - minValue)) + minValue;
+// Include the numbers
+Math.floor(Math.random() * (+maxValue +1 - +minValue)) + minValue;
 ```

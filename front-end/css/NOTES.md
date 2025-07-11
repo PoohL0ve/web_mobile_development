@@ -1,4 +1,4 @@
-## The Styling Language
+# The Styling Language
 CSS uses selectors and a curly bracket as its basic syntax (declaration block). Basic styling:
 ```css
 /* Select all elements */
@@ -32,17 +32,42 @@ Advanced selectors:
 - *adjacent sibling combinator* - +
 - *general sibling combinator* - ~
 
-Common properties in CSS:
-- color, background-color
-- font-family, font-size, font-weight
-- text-align
-- height, width (use auto with height to keep proportions)
-
 CSS can be added to HTML:
 ```html
 <link rel="stylesheet" href="styles.css">
 ```
-## The Box Model
+
+## CSS Units
+Absolute units are those that do not change with the most used being **px**. Relative units include *rem* and *em* for font size. The em element is based on the parent element, for instance if something is 10px: *4em = 40px*. The rem element is based on the root of the document and is recommended to use; allowing users to change is needed. Viewport units like vh and vw refer to the viewport where 1vh is equivalent to 1% of the viewport.
+```css
+/* Common relative units: relative to the parent element*/
+p {
+  height: 50%;
+  font-size: 2.5em /* 2.5 times larger than the parent*/
+  /* By default browsers font sizes are 16px*/
+}
+```
+
+## Basic Properties
+### Positioning
+The default position is static. With absolute positioning, the other elements behave as though the element isn't there and shifts position. In other words, it does not affect the other elements on the screen. Relative is the same as static with the exception that the **top, bottom, right, and left** positions can be altered.
+```css
+.child {
+  position: relative;
+  left: 10px;
+}
+```
+**Fixed** positioning stays the same even when scrolling as it does not reference a container element. **Sticky** is a combination of fixed and relative.
+```css
+.header {
+  position: sticky;  
+  top: 40px;    /* Define when the header becomes sticky */
+  background-color: lightblue;
+  width: 100%;
+}
+```
+### Common Properties
+#### The Box Model
 Every element lays in a box which can be observed by using the *outline* property:
 ```css
 * {
@@ -59,13 +84,86 @@ Generally, the universal margin and padding is set to 0 and the box-sizing is se
 - top -> right -> bottom -> left
 - auto can be used for horizontal centering
 
-## Block vs Inline
+#### Block vs Inline
 Block elements start on a new line while inline elements can be on the same line. Inline-block elements behave like inline but have some block properties:
 ```css
 div {
     display: inline-block;
 }
 ```
+
+#### Colors in CSS
+Color models are methods used for describing colors using quatitative characteristics. The **RGB** model uses different degrees of *red*, *green*, and *blue* to describe a color, using numbers in the range of **0-255**. The **HEX** hexidecimal system can denote the RGB where red can be *#FF0000*. **CMYK** is used for printing and it stands for *cyan, magenta, and yellow where the K is the degree of black*. 
+
+Neutral colors like white and dark-gray are great to use. Using color palletes like [Coolors](https://coolors.co/palettes/trending) for accent colors can help with designing. However, don't forget to check compatibility and user accessibility on site like [ABC](https://abc.useallfive.com/).
+Note: devote 10% ONLY to corporate color.
+
+The **RGBA** color schemes add the alpha for transparency where 0 is complete transparency and 1 is opacity. **HSL** defines color by hue, saturation, and lightness. Hue is the angle on the color wheel and lightness and saturation are measured in percentages. **HSLA** adds transparency to HSL.
+
+#### Background
+The **background** property is used to set the background color or image of an element. The property **background-color** can have values like color, initial (default color), or inherit. The **background-image** property can have images using relative or absolute paths in the *url()* function or have a gradient using *linear-gradient()*.
+
+The **background-repeat** property makes the image repeat and accept values like *repeat, no-repeat, and repeat-x | repeat-y*. The **background-attachment** takes the *scroll* and *fixed* values to allow the background to scroll with the content or stay in place. The **background-position** can take two values at a time where the first defines the horizontal axis and the second the vertical. The values can be in the form of units or top, left, right, bottom, and center. If one value is selected the second value would be centered. To change the size of the background use the property **background-size** with values as:
+- *percentages*
+- *contain*: height or width matches the viewport
+- *cover*: height and width matches the viewport
+
+The **background-clip** property determines the display area and have values like content-box, padding-box, and border-box. The **background** property can be used along for all the others but if not included the default properties would be used instead:
+```css
+div {
+  background: url(image/cat.png) repeat contain;
+}
+```
+
+
+#### Border
+The **border-style** property can take values like inset, outset, dotted, dashed, solid, double, groove, and ridge. If the **border-color** is not specified it would take the color of the text of the element. The **border-width** sets the width. The **border** property allows all three properties to be set:
+```css
+button {
+  /* width, style, color */
+  border: 2px dotted gray;
+}
+```
+Properties like the following allows you to set borders for one side of an element:
+- *border-top, border-right, border-left, border-bottom*/
+
+#### Overflow
+Overflow properties include:
+- *visible*
+- *hidden*
+- *scroll* - adds scroll bars even when it's not neccesary.
+- *auto*
+
+Notable: *text-overflow: ellipsis*, adds the dots. It should be used with the overflow property for text elements.
+
+### Working With Text
+The **text-align** property allows text to be aligned based on the border of the element. It can be aligned left, right, center, justify, start, or end.
+```css
+header {
+  text-align: center;
+}
+```
+
+## Selectors in Depth
+### Pseudo-Classes
+**Pseudo-Classes** allows you to work with the page in a dynamic mood. They must be attached to the selector in which they describe. Pseudo-classes that determine the *state of an element* responds to the current state selectors as they are. It has the syntax of:
+```css
+css-selector:pseudo-class {
+  property: value;
+}
+```
+Common classes are:
+- **active**: time between pressing and releasing the mouse allowing the page to be active
+- **focus**: focuses on an element
+- **hover**: element reacts when the mouse is hovering
+- **visited**: mark links that have already been visited
+
+There are pseudo-classes that target the **DOM tree** to work with elements in an hierarchical order. Common classes include:
+- **first-child, last-child**: target the first and last elements
+- **nth-child(value)**:
+    - nth-child(3): third child
+    - nth-child(even/odd)
+    - nth-child(3n): every third element, that is 3, 6, 9.
 
 ## Flexbox
 It is about arranging items into rows and columns, where they can shrink and grow.
@@ -90,16 +188,7 @@ Elements inside the main container can have specific properties:
 
 [Cheatsheet](https://flexbox.malven.co/)
 
-## CSS Units
-Absolute units are those that do not change with the most used being **px**. Relative units include *rem* and *em* for font size. The em element is based on the parent element, for instance if something is 10px: *4em = 40px*. The rem element is based on the root of the document and is recommended to use; allowing users to change is needed. Viewport units like vh and vw refer to the viewport where 1vh is equivalent to 1% of the viewport.
-```css
-/* Common relative units: relative to the parent element*/
-p {
-  height: 50%;
-  font-size: 2.5em /* 2.5 times larger than the parent*/
-  /* By default browsers font sizes are 16px*/
-}
-```
+
 
 ### Fonts
 You can choose fonts from external and internal sources, but always have a fallback font.
@@ -147,23 +236,7 @@ html {
 }
 ```
 
-### Positioning
-The default position is static. With absolute positioning, the other elements behave as though the element isn't there and shifts position. In other words, it does not affect the other elements on the screen. Relative is the same as static with the exception that the **top, bottom, right, and left** positions can be altered.
-```css
-.child {
-  position: relative;
-  left: 10px;
-}
-```
-**Fixed** positioning stays the same even when scrolling as it does not reference a container element. **Sticky** is a combination of fixed and relative.
-```css
-.header {
-  position: sticky;  
-  top: 40px;    /* Define when the header becomes sticky */
-  background-color: lightblue;
-  width: 100%;
-}
-```
+
 ### Functions
 The **calc()** function is good for mixing units and nesting other calc() functions. The **max() and min()** functions can have calculations in them and selects the max or min value respectively. The **clamp()** function takes 3 values in the min, ideal, and max.
 ```css
@@ -260,12 +333,7 @@ section {
   
 }
 ```
-[Grid Properties](https://css-tricks.com/snippets/css/complete-guide-grid/#top-of-site)
 
-Overflow properties include:
-- *visible*
-- *hidden*
-- *scroll* - adds scroll bars even when it's not neccesary.
-- *auto*
-
-Notable: *text-overflow: ellipsis*, adds the dots. It should be used with the overflow property for text elements.
+## Resources
+- [Color Picker](https://colorpicker.dev/#bc36ecfa)
+- [Grid Properties](https://css-tricks.com/snippets/css/complete-guide-grid/#top-of-site)

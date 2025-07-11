@@ -1,4 +1,4 @@
-## Tags and Elements
+## Intro
 All HTML (HyperText Markup Language) elements are wrappedn in tags:
 ```html
 <p>This is a paragraph</p>
@@ -8,6 +8,81 @@ Heading elements are from h1 to h6, where h1 is the largest. The **strong** elem
 ```html
 <!-- I am a comment -->
 ```
+### Text Formatting
+#### Links
+Page navigation uses the **nav** element which can use the id and # to move from a link to a section on a page:
+```html
+<nav>
+    <a href="#section1">Find Section One</a>
+</nav>
+<section id="section1">All about it</section>
+
+<!-- Specific path to another page -->
+ <a href="another-page.com#about"> About Animals</a>
+```
+The **a** tag has special attributes:
+- target: "_self", "_blank"
+- download: can be standalone or given a name
+- title
+- href: can have a link, mail, or phone number:
+    - href="tel:+123456789"
+    - href="mailto:example@mail.com"
+```html
+<!-- Download a file with the name new file -->
+ <a href="https://somesite.com/somefolder/somefile.pdf" download="newfile">Download me!</a>
+```
+
+#### Quotations
+There are different quotes that can be used:
+```html
+<!--- Inline --->
+<p><q>Get out of my life!</q>That's what she said</p>
+<!--- Block --->
+<blockquote></blockquote>
+<!--- Citation --->
+<p><q>All is well</q>, <cite>(Ris, 2025)</cite></p>
+```
+The **q and blockquote** tags can have a cite attribute that provides a URL.
+
+#### The i tag
+The **i** tag should only be used when the others do not provide semantic advantages:
+- **em**: emphasis
+- **strong**: importance
+- **mark**: relevance
+- **cite**
+- **dfn**: definition of a term
+
+#### Phrase Tags
+```html
+<!-- Sample or output text -->
+ <samp>Error: this cannot be done!</samp>
+<!-- Represents user's input -->
+ <kbd>CTRL + C</kbd>
+<!-- Represents computer code -->
+ <code>String name = "Sophie";</code>
+<!-- Sample or output text -->
+```
+#### Footer elements
+The **abbr** is used for abbreviations and helps with SEO by providing information:
+```HTML
+<abbr title="Keep it simple, stupid">KISS</abbr>
+<hr/> <!--Horizontal line breaks -->
+<abbr title="Don't repeat yourself">DRY</abbr>
+```
+The **address** tag is used for contact information with the **br** tag providing line breaks:
+```html
+<address>
+    #12 Lover's Lane <br/>
+    Diamond Avenue <br/>
+    Mystery Island <br/>
+    Somewhere in Paradise
+</address>
+```
+The bi-directional override **bdo** tag is used to send HTML text in the opposite direction, using the *dir* attribute:
+```html
+<bdo dir="rtl">It's Over</bdo> <!-- Also (ltr) -->
+```
+## Basic Tags: Lists
 Ordered and Unordered lists
 ```html
 <!--- Unordered Lists --->
@@ -41,31 +116,8 @@ Lists can have the type attribute which can change it. The other type of list el
 ```
 Unordered lists can have four types: *disk, circle, square, and none*. They can be implemented with the CSS attribute **list-style-type**.
 
-Page navigation uses the **nav** element which can use the id and # to move from a link to a section on a page:
-```html
-<nav>
-    <a href="#section1">Find Section One</a>
-</nav>
-<section id="section1">All about it</section>
-
-<!-- Specific path to another page -->
- <a href="another-page.com#about"> About Animals</a>
-```
-The **a** tag has special attributes:
-- target: "_self", "_blank"
-- download: can be standalone or given a name
-- title
-- href: can have a link, mail, or phone number:
-    - href="tel:+123456789"
-    - href="mailto:example@mail.com"
-
-```html
-<!-- Download a file with the name new file -->
- <a href="https://somesite.com/somefolder/somefile.pdf" download="newfile">Download me!</a>
-```
-Some common HTML body tags:
-- aside, section, header, nav, article, main
-
+## Media Files
+### Audio
 The audio tag is used to add audio files to a webpage:
 ```html
 <audio>
@@ -75,45 +127,7 @@ The audio tag is used to add audio files to a webpage:
 </audio>
 <!-- Other attributes: controls, loop, muted, autoplay -->
 ```
-### Quotations
-There are different quotes that can be used:
-```html
-<!--- Inline --->
-<p><q>Get out of my life!</q>That's what she said</p>
-<!--- Block --->
-<blockquote></blockquote>
-<!--- Citation --->
-<p><q>All is well</q>, <cite>(Ris, 2025)</cite></p>
-```
-The **q and blockquote** tags can have a cite attribute that provides a URL.
-
-Phrase tags:
-```html
-<!-- Sample or output text -->
- <samp>Error: this cannot be done!</samp>
-<!-- Represents user's input -->
- <kbd>CTRL + C</kbd>
-<!-- Represents computer code -->
- <code>String name = "Sophie";</code>
-<!-- Sample or output text -->
-```
-The **i** tag should only be used when the others do not provide semantic advantages:
-- **em**: emphasis
-- **strong**: importance
-- **mark**: relevance
-- **cite**
-- **dfn**: definition of a term
-### Tables
-They are enclosed in the **table** tag. Each cell is represented by the *td* tag and will be next to each other unless a *tr* tag is used to represent a row. The *th* tag is used for headers. The **caption** tag is normally placed below the opening table tag. The borders are invisible by default.
-```html
-<table border="2"></table>
-<!-- Allow to span rows and columns -->
- <th rowspan="2"></th>
- <th colspan="2"></th>
-```
-The **tfoot, thead, and tbody** tag are great for adding CSS styling to a table. The *scope* attribute in the *th* tag helps with accessibility. The **id and headers** attributes are used to make references.
-
-### Videos
+### Video
 When working with videos only use the file that is stored on your computer, otherwise the link will direct the user to another website.
 ```html
 <video control src="video.mp4"></video>
@@ -122,34 +136,9 @@ When working with videos only use the file that is stored on your computer, othe
 ```
 Videos can also be in webm and ogg; however, some browsers may not support them.
 
-### Footer elements
-The **abbr** is used for abbreviations and helps with SEO by providing information:
-```HTML
-<abbr title="Keep it simple, stupid">KISS</abbr>
-<hr/> <!--Horizontal line breaks -->
-<abbr title="Don't repeat yourself">DRY</abbr>
-```
-The **address** tag is used for contact information with the **br** tag providing line breaks:
-```html
-<address>
-    #12 Lover's Lane <br/>
-    Diamond Avenue <br/>
-    Mystery Island <br/>
-    Somewhere in Paradise
-</address>
-```
-The bi-directional override **bdo** tag is used to send HTML text in the opposite direction, using the *dir* attribute:
-```html
-<bdo dir="rtl">It's Over</bdo> <!-- Also (ltr) -->
-```
-### Embed websites and maps
-The inline frame **iframe** tag is used to embed websites and maps on a page.
-```html
-<iframe src title></iframe>
-```
-It can also have attributes like width, height, style, and target.
+### Images
 
-### Forms
+## Forms
 The **form** element is a container element that takes 2 attributes: **action**, which tells the form where to send the data and **method** which tells the browser which HTTP request method to use to submit the form.
 ```html
 <form attribute="makefriends.com" method="post"></form>
@@ -202,3 +191,38 @@ The textarea element can have validations like *minlength and maxlength*. Number
   </div>
 </form>
 ```
+### Buttons
+Buttons can have for different types in *button, submit, menu, and reset*. Buttons can also be created in the input tag by passing one of the values to the *type* attribute of the input element.
+```html
+<input type="reset" value="reset" />
+```
+
+## Advance Elements
+### Embed websites and maps
+The inline frame **iframe** tag is used to embed websites and maps on a page.
+```html
+<iframe src title></iframe>
+```
+It can also have attributes like width, height, style, and target.
+
+Some common HTML body tags:
+- aside, section, header, nav, article, main
+
+
+
+
+
+
+
+### Tables
+They are enclosed in the **table** tag. Each cell is represented by the *td* tag and will be next to each other unless a *tr* tag is used to represent a row. The *th* tag is used for headers. The **caption** tag is normally placed below the opening table tag. The borders are invisible by default.
+```html
+<table border="2"></table>
+<!-- Allow to span rows and columns -->
+ <th rowspan="2"></th>
+ <th colspan="2"></th>
+```
+The **tfoot, thead, and tbody** tag are great for adding CSS styling to a table. The *scope* attribute in the *th* tag helps with accessibility. The **id and headers** attributes are used to make references.
+
+
+

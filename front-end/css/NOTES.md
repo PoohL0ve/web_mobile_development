@@ -165,13 +165,32 @@ There are pseudo-classes that target the **DOM tree** to work with elements in a
     - nth-child(even/odd)
     - nth-child(3n): every third element, that is 3, 6, 9.
 
-## Flexbox
-It is about arranging items into rows and columns, where they can shrink and grow.
+## Advance Displaying
+### Flexbox
+It is about arranging items into rows and columns, where they can shrink and grow. The full name is **Flexible Box Layout Module**.
+![Flex Layout](./flex-axis.png)
+- **Main-axis**: determines the default direction of elements
+- **Cross-axis**: perpendicular to the main
+- **Main start/end**: borders for the start and end
+- **Cross start/end**
+- **Main Size, Cross Size**: size of the axis
+
 ```css
 .main-container {
     display: flex;  
 }
 ```
+Order and direction of flex container:
+- **flex-direction**: determines the direction of the items in the container, with *row* being the default:
+  - *Values*: row, row-reverse, column, column-reverse.
+- **flex-wrap**: defines how the content may be in the container with consideration for overflow. It also releases the *align-content* property.
+  - *Values*: nowrap, wrap, wrap-reverse.
+- **flex-flow**: short-hand property for flex-direction and flex-wrap, where the direction value comes first:
+  - Example: *flex-flow: row-reverse wrap*.
+
+Order and direction of flex items:
+- **order**: The values are placed in position based on a number with the default being 0.
+
 Properties of flex:
 - **flex-direction**: it is horizontal by default with a value of row, but can be changed to column
 - **justify-content**: allows content to be aligned with space-around, space-between, center, and space-evenly
@@ -187,75 +206,6 @@ Elements inside the main container can have specific properties:
 - **order**: changes the order, where the last can appear first with -1
 
 [Cheatsheet](https://flexbox.malven.co/)
-
-
-
-### Fonts
-You can choose fonts from external and internal sources, but always have a fallback font.
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-```
-They can also be imported at the top of the CSS file:
-```css
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-body {
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-```
-For fonts you have
-```css
-@font-face {
-  font-family: my-cool-font;
-  src: url(../fonts/the-font-file.woff);
-}
-
-h1 {
-  font-family: my-cool-font, sans-serif;
-}
-```
-Some text styles:
-- text-overflow: such as ellipsis
-- overflow: like hidden
-- text-shadow
-- text-transoform
-- line-height
-- line-spacing
-- font-style
-
-Let the browser determine the text size by using the **calc** function:
-```css
-font-size: calc(0.75rem * 1.5vw);
-
-html {
-    font-size: clamp(1rem, 0.75rem * 1.5vw, 2rem);
-    max-inline-size: 45ch;
-    line-height: 1.5;
-}
-```
-
-
-### Functions
-The **calc()** function is good for mixing units and nesting other calc() functions. The **max() and min()** functions can have calculations in them and selects the max or min value respectively. The **clamp()** function takes 3 values in the min, ideal, and max.
-```css
-p {
-  /* The ideal is 4% of the viewport height */
-  font-size: clamp(0.8rem, 4vh, 2rem);
-  line-height: calc(1.2rem + 2vh);
-}
-
-img {
-  width: min(50%, 300px);
-}
-
-header {
-  grid-template-columns: minmax(400px, 2fr) 1fr /*The last is fixed */
-}
-```
-
-**Custom properties** or CSS variables can be reused. To access them, use the **var()** function which accepts two parameters, the variable and a fallback value. The properties have can only be accessed by the scope in which it was created (element) and its descendants. The best way to use them is by declaring them on the root (:root) selector.
 
 ### Grid
 Grids are used for laying out elements. The elements of child containers are not a grid; but grid elements can be assigned grids. The **display** property can use *grid* or *inline-grid*. Implicit items can have their sizes specified with **grid-auto-rows/columns**. 
@@ -333,6 +283,79 @@ section {
   
 }
 ```
+### Floats
+The **float** property allows you to have elements that can float around an element by moving it left or right. The element nor its parent that is needed to float can have its position set to absolute. The values of float are: *left, right, and inherit*. The proerty is used for block elements.
+
+The **clear** property is a complement to the float property and has the values: left, right, both, and none. The property is used to allow elements inside a container that has a float property to go to the default flow.
+
+## Fonts
+You can choose fonts from external and internal sources, but always have a fallback font.
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+```
+They can also be imported at the top of the CSS file:
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+```
+For fonts you have
+```css
+@font-face {
+  font-family: my-cool-font;
+  src: url(../fonts/the-font-file.woff);
+}
+
+h1 {
+  font-family: my-cool-font, sans-serif;
+}
+```
+Some text styles:
+- text-overflow: such as ellipsis
+- overflow: like hidden
+- text-shadow
+- text-transoform
+- line-height
+- line-spacing
+- font-style
+
+Let the browser determine the text size by using the **calc** function:
+```css
+font-size: calc(0.75rem * 1.5vw);
+
+html {
+    font-size: clamp(1rem, 0.75rem * 1.5vw, 2rem);
+    max-inline-size: 45ch;
+    line-height: 1.5;
+}
+```
+
+
+### Functions
+The **calc()** function is good for mixing units and nesting other calc() functions. The **max() and min()** functions can have calculations in them and selects the max or min value respectively. The **clamp()** function takes 3 values in the min, ideal, and max.
+```css
+p {
+  /* The ideal is 4% of the viewport height */
+  font-size: clamp(0.8rem, 4vh, 2rem);
+  line-height: calc(1.2rem + 2vh);
+}
+
+img {
+  width: min(50%, 300px);
+}
+
+header {
+  grid-template-columns: minmax(400px, 2fr) 1fr /*The last is fixed */
+}
+```
+
+**Custom properties** or CSS variables can be reused. To access them, use the **var()** function which accepts two parameters, the variable and a fallback value. The properties have can only be accessed by the scope in which it was created (element) and its descendants. The best way to use them is by declaring them on the root (:root) selector.
+
+
 
 ## Resources
 - [Color Picker](https://colorpicker.dev/#bc36ecfa)

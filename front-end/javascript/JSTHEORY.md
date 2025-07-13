@@ -367,8 +367,8 @@ Sometimes an event may need to be removed after a condition has been met. The me
 ```js
 btn.removeEventListener( "click", () => {alert( "Hello World" ); });
 ```
-
-## Object and Object Constructors
+## Organising JS Code
+### Object and Object Constructors
 An object can be defined using the object literal and data can be retrieved by using the **dot notation** or the **bracket notation**.
 ```js
 /* Create and Access data from an object */
@@ -409,7 +409,7 @@ let person = {
   }
 };
 ```
-### Prototypes
+#### Prototypes
 All objects in JS has a prototype. A **Prototype** is an orginal object that all objects inherits from. Properties and methods can be attached to objects by using the prototype:
 ```js
 Player.prototype.sayHello = function(){
@@ -423,6 +423,153 @@ noni.hasOwnProperty("valueOf"); // false
 Object.prototype.hasOwnProperty("valueOf"); // true
 ```
 The **Object.setPrototypeOf()** takes two arguments where the first one is the object that inherits and the second is the object that has to be inherited from.
+
+**Functional mixins** are functions created for extending existing objects. It allows you to use closures. The **Object.assign()** method allows us to add the mixing to an object.
+```js
+class Date {
+    consturctor(name) {
+        this.name = name;
+    }
+};
+// Date Functionality
+const dateFunctionality = {
+    showUp: () => return `Go to the meeting place`;
+    talk: () => return `Hello, thank you for coming.`;
+};
+
+Object.assign(Date.prototype, dataFunctionality); // Instances will have all the functionalities
+```
+Mixins can also inherit from other mixins.
+
+### Classes
+**Getters** and **setters** are used to access values in an object.
+```js
+let user = {
+    name: "Mary",
+    surname: "Gook",
+
+    get fullName() {
+        return `${this.name} ${this.surname}`;
+    },
+
+    set fullName(value) {
+        [this.name, this.surname] = value.split(" ");
+    }
+}
+```
+### ES6 Modules
+ESM allows each module to have its own private scope where we import and export them to communicate between files.
+```js
+// File that exports methods
+const greeting = "Hello world!";
+const farewell = "Goodbye world!";
+// Could also use: export const greetting = "Hellow world!"
+export {greeting, farewell};
+
+// File that imports
+import {greeting, farewell} from "./exportingFile.js";
+```
+When exporting using the default syntax the object does not have aname assigned to it; therefore, it can be named anything in the importing file:
+```js
+// Exporting file
+const greeting = "Hello world!";
+export default greeting; // no name attached when imported
+
+// Importing file
+import helloWorld from "./exportingFile";
+```
+### npm
+It is a package manager that provides libraries and other tools that can be used it project. The package manager provides a command line tool that we can use. Additionally, it allows us to add our own packages to it.
+
+The package manager revolves around a **package.json** file which contains things like version, scripts, and dependencies for a project. npm can read the file and install dependencies etc. A package can be installed locally by using **nodes require** syntax. However to globally install a package:
+```bash
+npm install lodash
+
+# Creating a package.json from the command line
+npm init # Asks questions to build the file
+npm init --yes # creates a default file from your project
+# Config others
+npm set init-author-email "example-user@example.com"
+npm set init-author-name "example_user"
+npm set init-license "MIT"
+```
+Any package installed are dependecies. Developer dependencies are packages that user-facing app does not use.
+### Webpack
+Webpack bundling is is the process of taking all the individual pieces of your website's code and assets, optimizing them, and then combining them into a smaller, more efficient set of files that browsers can download and run much faster.
+When the package.json file is created remove the *type* property before installing webpack. To install the two packages for development, not for the web browser use *save-dev* or *-D*.
+```bash
+npm install --save-dev webpack webpack-cli
+```
+The package would create a **node_modules** directory and a **package-lock.json** file. The node_modules is where webpack's code and many other stuff is stored and the package-lock.json file is a file npm uses to track specific package information. The work inside the **src** builds into the **dist** directory, where it can be deployed.
+```bash
+mkdir src && touch src/index.js src/greeting.js
+```
+The webpack config file **webpack.config.js** will contain things like the entry point, the destination, and pluging and loaders. This file should be in the project root. To run webpack use: **npx webpack**. This will create a dist directory that contains a **main.js** file.
+```bash
+# Install the HTMLWebpackPlugin
+npm install --save-dev html-webpack-plugin
+```
+Add a html file like *template.html* in the src folder and do not include the *script* tag as the bundle tool (HTMLPlugin) will handle it.
+```js
+// webpack.config.js
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+// Add to exports
+plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
+```
+For CSS there are two files:
+- **css-loader**: stores the css that are imported to a js file in a string.
+- **style-loader**: takes the string and adds the js that would apply the code
+```bash
+npm install --save-dev style-loader css-loader
+```
+Add the following after the plugins:
+```js
+module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+```
+Import the css to the js files.
+
+Local images has to be configured. If the image is in the CSS where a url() is used then there is nothing to do as css-loader handles it. If the image is in the HTML then the **html-loader** has to be imported:
+```bash
+npm install --save-dev html-loader
+```
+The modules array then has to include:
+```js
+{
+  test: /\.html$/i,
+  loader: "html-loader",
+}
+
+// For images used with JS
+{
+  test: /\.(png|svg|jpg|jpeg|gif)$/i,
+  type: "asset/resource",
+} // then import to the JS module
+```
+
+To avoid running npx webpack each time a change is made, download **webpack-dev-server** which automatically reloads. To ensure it works add: 
+```js
+devtool: "eval-source-map",
+
+devServer: {
+    watchFiles: ["./src/template.html"],
+  },
+```
+To run the server use **npx webpack serve**. Any changes made would not be reflected, thus, use **CTRL + C** to stop the server to add changes to the config file.
+### JSON
+### OOP Principles
+
+
 
 ## Working with Time and Data
 **Scheduling a Call** is simply providing the time when something should occur. The **setTimeout()** function is used for that. The method can be in the form of function, time, and argument for a method like *setTimeout(call, 2000, "you")*.
@@ -474,4 +621,32 @@ Math.floor(Math.random() * 10);
 Math.floor(Math.random() * (maxValue - minValue)) + minValue;
 // Include the numbers
 Math.floor(Math.random() * (+maxValue +1 - +minValue)) + minValue;
+```
+
+## Closures
+A **closure** is the ability to access a parent scope's data even after the function has been terminated. The potential parent variable may not be cleaned up or garbage collected. In others words a closure is a function with preserved data from the parent function. When called twice you can add the argument for the second function if the first call is stored in a variable:
+```js
+function createGreeting(greeting = "") {
+  const myGreet = greeting.toUpperCase();
+
+  return function(name) {
+    return `${myGreet} ${name}`;
+  };
+}
+// Store in a varibale
+const sayHello = createGreeting('hello');
+console.log(sayHello('wes'));
+```
+The variable in the outer function is accessed at a lower scope. Another way is with private variables which cannot be accessed from outside. In the following example each time the game is ran the score will increment:
+```js
+function createGame(gameName){
+  let score = 0;
+
+  return function win(){
+    score ++;
+    return `Your name ${gameName} score is ${score}`
+  }
+}
+
+const hockeyGame = createGame('Hockey');
 ```

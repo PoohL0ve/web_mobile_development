@@ -149,6 +149,33 @@ Form **control elements** allow users to interact with a form:
     - *type*, *name* (helps backend), *password*, *placeholder*
 - **textarea**: can accept *rows* and *cols*
 
+### The Input Field
+The **input** field is an in-line element that has several attributes. The **id** attribute is used to link the label (*for*) with the correct input field. The **type** attribute defines the type of data needed for the specific field: 
+- **email, password, tel, file (allows users to upload a file), date**
+  - Groups of inputs:
+    - **radio**: groups similar themes, only one option can be chosen
+    - **checkbox**: can have an added default attribute of *checked*;
+  - **img**: uses the *src* attribute
+
+Other atttributes of the input field
+- **pattern**: provides a pattern that the field values must follow like: *pattern="[0-9]{3}-[0-9]{4}";
+- **value**: specifies an initial value for the input field. however:
+  - for buttons it specifies the name on the button
+  - for radio and checkbox it specifies the value associated with them
+- **size**: based on the number of characters, it is the visible width. It can only be used with a limited number of types like *password, url, search, and email*.
+- **readonly**: does not allow input, mainly used to send a value while submitting a form.
+- **height/width**
+- **disabled**: nothing can be typed
+- **multiple**: a boolean mainly used to allow a user to upload multiple files
+- **placeholder**: a muted text that specifies a hint to the user
+- **autofocus**: an element can have the focus when a page is loaded
+- **autocomplete**: allows the broswer to guess the input based on previous values and has the values *on and off*
+- **list**: used with the *datalist* element where the ids must match.
+- **step**: if step="5" then legal steps are -15, -10, -5, 0, 5. The attribute is a multiple attribute of the given number.
+- **min/max**: any value like birthdates, only number attributes. Example: *max="2022-10-15"*.
+- **max/minlength**: text
+- **required**: input must be filled
+
 Selection elements can have an option group but must always have a value. Additionally, it can have a predetermined selection:
 ```html
 <!-- Drop Down Menu -->
@@ -204,6 +231,13 @@ The inline frame **iframe** tag is used to embed websites and maps on a page.
 <iframe src title></iframe>
 ```
 It can also have attributes like width, height, style, and target.
+
+### lang attribute
+### Dialog
+### Canvas graphics
+### SVG in HTML
+
+
 
 Some common HTML body tags:
 - aside, section, header, nav, article, main

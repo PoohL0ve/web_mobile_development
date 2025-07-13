@@ -55,3 +55,10 @@ import mongoose from "mongoose";
 
 ## Frontend
 Build with Vite and use : "npm i react-router-dom" to be able to navigate to different pages. rafce
+
+## UX/UI Essentials
+When it comes to CSS almost everything is about the user and how they interact with the page elements. When creating input and label fields ensure that the label is short and visible. Use floating labels when possible where the label floats to the top of the input box.
+
+## Helpful tools
+1. [Figma](): UI/UX
+2. [Diagrams.net](): Logical and structural diagrams.

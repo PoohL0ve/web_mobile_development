@@ -48,6 +48,45 @@ Elliptic Curve Digital Algorithm is the cryptographic algorithm that Bitcoin use
 Bitcoin uses a consensus mechanism called proof of work, while Ethereum uses proof-of-state. Mining is process of creating a block of transactions to be added to a blockchain. But how does that tie in to proof-of-work? Well, proof-of-work could just as well be called proof-of-mining! Peers in the mining process are called **miners**. Mining is just an automated software that humans run. Functions of mining:
 1. Enforces consensus rules
 2. Currency issuance
+
+PoW Mining Algorithm:
+1. Take current block's block header
+2. Append a nonce, starting at nonce = 0
+3. Hash data from steps 1 and 2
+4. Check hash vs target based on protocol
+5. If hash < target, problem solved, receive reward
+6. Else restart from step 2 and increment nonce
+
+Mining makes a network more secured.
+```js
+function mine() {
+    // TODO: mine a block
+    const block = {
+        id: blocks.length
+    }
+
+    const transactions = [];
+    
+    while (transactions.length < MAX_TRANSACTIONS && mempool.length > 0) {
+        transactions.push(mempool.pop());
+    }
+    block.transactions = transactions;
+
+    block.nonce = 0;
+    
+    let hash;
+    while (true) {
+        hash = SHA256(JSON.stringify(block)).toString();
+        if (BigInt(`0x${hash}`) < TARGET_DIFFICULTY) {
+            break;
+        }
+        block.nonce++;
+    }
+    
+    block.hash = hash;
+    blocks.push(block);
+}
+```
 ### 🔗 Blockchain Network
 
 

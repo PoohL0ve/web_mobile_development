@@ -1,6 +1,9 @@
 /** String Permutation
  * All the characters of the string would be arranged
- * in different locations. 
+ * in different locations.
+ * This program uses the container object as a reference where the 
+ * values will be stored, and the pre parameter to update
+ * new values. 
  */
 // Use the pre Value to accumulate characters to form the permutation
 const permuteString = (word, pre='', container=[]) => {

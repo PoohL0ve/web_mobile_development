@@ -68,6 +68,19 @@ console.log(a + b); // "52"
 ```
 Priority goes: 
 - Parentheses -> Unary -> Multiplication/Division -> +/-
+
+**Increment** and **Decrement** increases and decreases values respectively:
+- *prefix*: increases or decreases the value before use: --a;
+- *postfix*: increases or decreases the value after use: a++;
+```js
+let a = 5;
+let b = ++a;
+console.log(a); // 6 b is also 6
+
+let c = 4
+let d = c++
+console.log(c); // 5 d is 4
+```
 ## Data Types and Structures
 **String** is a very common data type that has several methods that can be used:
 ```js
@@ -136,7 +149,23 @@ switch (semester_month) {
         result = "A long break";
 }
 ```
-**To run tests use npx jest filename**
+**To run tests use npx jest filename** (ODIN)
+
+Switch statements can use the **break** or **return** keywords once a case is found:
+```js
+let city = "Paris";
+switch (city) {
+  case "London":
+    console.log("The price is $240");
+    break;
+  case "Paris":
+    console.log("The price is $150"); 
+    break;
+  default:
+    console.log("City not available");
+    default;   
+}
+```
 
 ## Regular Expressions
 Regex allows one to search through a string of text.
@@ -242,10 +271,14 @@ for (begin; condition; step) {
   // ... loop body ...
 }
 
-// Works with objects
-for (key in object) {
+// Works with objects and Arrays
+for (key in object) {}
   // executes the body for each key among object properties
+let fruits = ["apple","orange", "banana"];
+for (fruit in fruits) {
+  console.log(fruits[fruit]);
 }
+
 
 // Works with arrays
 for (let fruit of fruits) {
@@ -257,8 +290,11 @@ for (let fruit of fruits) {
 Arrays are lists objects and have several methods:
 ```js
 const values = [3, 5, 6, 7];
+const words = ["JavaScript", "is", "truly", "interesting"];
 values.push(9)
-
+words.join(" "); // A string
+const someValue = values.join("-");
+// toString() convert the elements to a string
 // The map method applies a function to each element
 const squaredNumbers = values.map((value) => {
     return Math.pow(value, 2)
@@ -302,6 +338,21 @@ function showItem(item, index, array) {
   console.log("My value is " + item + ". I’m the " + index + " element of array " + array);
 }
 arrayFruit.forEach(showItem);
+```
+Searching an array:
+- **includes()**: arr.includes(value, opt), optional tells where to search - true or false;
+- **find()**: returns the first matching element: arr.find(s => s.lang === 'English');
+- **findIndex()**: returns the index
+- **indexOf()/lastIndexOf()**: takes an optional value to start searching, finds the first index of an element.
+
+```js
+function search(objects) {
+// Write your code here 
+  const name = objects.find(n => {
+    return n.name === "John" && n.age === 30;
+  })
+  return name ? objects.indexOf(name) : -1;
+}
 ```
 
 ## Document Object Model
@@ -367,6 +418,22 @@ Sometimes an event may need to be removed after a condition has been met. The me
 ```js
 btn.removeEventListener( "click", () => {alert( "Hello World" ); });
 ```
+
+### Window Objects
+It is an object that represents a browser window. It is a global object where the properties can be accessed from anywhere in the code. It has properties like closed and innHeight/Width. It has methods like alert(), confirm(), close() - can only be used if the open() was used in JS, and prompt(). 
+
+The **Web Storage API** allows browsers to store data through the use of key value pairs. The **localStorage** keeps saved data in the browser even when it is closed and re-opened.
+```js
+window.localStorage // Access the object
+window.localStorage.setItem(key, value); // only strings
+window.localStorage.getItem(key)
+window.localStorage.removeItem(key)
+window.localStorage.clear()
+window.localStorage.lenght
+// Session storage can only be accessible when server are used
+window.sessionStorage
+```
+
 ## Organising JS Code
 ### Object and Object Constructors
 An object can be defined using the object literal and data can be retrieved by using the **dot notation** or the **bracket notation**.
@@ -566,9 +633,33 @@ devServer: {
   },
 ```
 To run the server use **npx webpack serve**. Any changes made would not be reflected, thus, use **CTRL + C** to stop the server to add changes to the config file.
-### JSON
-### OOP Principles
 
+Instead of running the webpack command line commands for building, deploying, and developing, we can use the **npm run <tool>** instead. This is done by adding a **scripts** object to the package.json file:
+```js
+{
+  // ... other package.json stuff
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
+  },
+  // ... other package.json stuff
+}
+```
+
+### JSON
+JavaScript Object Notation is a string based data format that's like JS Objects that is used to transmit data across networks. **Deserialisation** is converting a string to native object, and **serialisation** is converting a native object to a string. The **parse()** method is used to read JSON objects by converting them to a JS object. The **stringify()** method converts a JS object to a JSON object.
+### OOP Principles
+**Tightly coupled** objects means that an object is highly dependent on another and altering one requires altering the other. Aim to build loosely coupled objects. 
+
+The **SOLID** standard is made up of several principles:
+|Principle           | Description                                |
+|:------------------:|:-------------------------------------------|
+|`Single Responsibility`| All classes, methods, functions etc should only have one single responsibility, that is, one reason to change.|
+|`Open/Closed`| Open for extension, meaning new functionalities and behaviour can be added, while closed for modification means that the source code should not have to be altered to add new features.|
+|`Liskov Substitution`| If a class is inheriting or created by using another, it should be able to swap out the other without breaking the program.|
+|`Interface Segregation`| No client should be forced to dependend on interfaces they do not use.|
+|`Dependency Inversion`| high-level modules should not depend on low-level modules; both should depend on abstractions. Additionally, abstractions should not depend on details; details should depend on abstractions. The principles removes the need for parts of a code to communicate directly.|
 
 
 ## Working with Time and Data
@@ -650,3 +741,127 @@ function createGame(gameName){
 
 const hockeyGame = createGame('Hockey');
 ```
+
+## JS in The Real World
+### Linting
+Linters are tools that would scan your code to valid the style based on a set of rules. The most common linter is ESLint. To use ensure there is a package.json file and install locally not globally using:
+```bash
+npm init @eslint/config@latest
+```
+Formatters are similiar to linters but they do not look for style errors, but things like spacing, indentation etc. The most common and free is Prettier. Both are installed as dev dependencies.
+### Dynamic User Interface Interactions
+It involves things like drop-down menus and image carousels.
+### Form Validation With JS
+The **Constraint Validation API** is a set of methods that can be used on textarea, select, button, fieldset, input, and output.
+### ES6
+
+## Asynchronous JS and APIs
+Asynchronous events occur at different times independent of each other, that is tasks that run in the background. A **thread** is a unit of execution within a process. Threads are run concurrently in asynchronous programming. This type of programming often involves async/await, promises, and callbacks, where a process may take time such as fetching data from an API.
+
+When the script tag uses the async attribute the browser will download the HTML until the script is downloaded, where it executes the JS code and then continue to download the HTML. The **defer** scripts wait until the HTML parsing is complete. Use async when the order of execution does not matter, and defer when they do.
+```js
+<srcipt src="testing.js" async></script>
+<srcipt src="testing.js" defer></script>
+```
+
+A **promise** in JS is an object that represents the eventual completion or failure of a process in asynchronous programming.
+```js
+let p = Promise((resolve, reject) +> {
+  let a = 4;
+  if (a % 2 === 0) {
+    resolve("Success");
+  } else {
+    reject("Failed");
+  }
+});
+// Now we use the .then and .catch to run what was in the promise
+p.then((message) => {
+  console.log(`This was the message: ${message}`);
+}).catch((message) => { 
+  console.log(`Error caused by: ${message}`);
+})
+```
+Promises a good to run background code that doesn't make the program stop and wait for it. It also allows multiple chaining using the *then* method.
+
+Servers that are created for serving data for external use are reffered to as *Application Programming Interfaces*. APIs are generally urls that may be provided to you with your own special key which you can store to use the service. The **fetch API** allows web apps to make requests to and from a server through the *fetch()* method, which returns JSON data. 
+```js
+fetch("someURL").then(function(response) {
+  // Something
+}).catch(function(err) {
+  // Something
+})
+// Cross Origin Resource Sharing: allows access from requests
+fetch('url.url.com/api', {
+  mode: 'cors' // Set mode property
+});
+```
+If the fetch API is used without a HTTP method, it defaults to *GET*.
+```js
+fetch("https://api.example.com/data")
+  .then(response => response.json()) // Must convert to JSON
+  .then(data => console.log(data));
+```
+To send data to the server use the *POST* method:
+```js
+fetch("https://api.example.com/data", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: json.stringify({
+    name: "Jane Doe",
+    address: "123 Apple Street, Wonderland"
+  })
+})
+```
+The *PUT* method is used to update data, while the *DELETE* is used to remove data. Both method require the id in the url:
+```js
+fetch("https://api.example.com/data/54", {
+  method: 'DELETE'
+})
+```
+
+The **async** informs the JS engine that the function is an asynchronous one which allows you to use the await keyword. It is similiar to a Promise in that if it's successful then the response will be like the then and so on. The **await** keyword pause the program until a value is returned. Note async can be used **ANYWHERE** a function can be used.
+```js
+const findPeople = async () => {
+  const people = await server.getPeople();
+  const person = people.find(person => { return person.name === name });
+  return person;
+}
+```
+Add the try/catch block for handling errors.
+
+The **JS Engine** reads, understands, and executes the code written. The most popular JS Engine is *V8* developed by Google and also used in Nodejs. It first parses the code to look for syntax error, then compile it to byte code, where the engine executes it. The JS runtime is the environment where the code is executed. It includes the JS Engine and it allows JS to do more than just write code.
+
+The **Geolocation API** provides a way to know a user's location; ensure the user gives their permission for the website to request their location. It uses the *getCurrentPosition* method to do so:
+```js
+navigation.geolocation.getCurrentPosition(
+  (position) => {
+    console.log(`Latitude: ${position.coords.latitude}`);
+    console.log(`Longitude: ${position.coords.longtitude}`);
+  },
+  (error) => {
+    console.log(`Error: ${error.message}`);
+  }
+);
+```
+
+## Computer Science Re-cap
+An **algorithm** is a step by step instruction to complete or do something. **Psuedo-code** is an Enlgish like way to write an algorithm.
+
+**Recursion** is a type of algorithm in which a function calls itself to break a large problem into smaller pieces; a process known as *Divide and Conquer*. The **base** case or base or recursion is when the recursion should stop.
+```js
+function pow(x, n) {
+  // Base case is where n == 1
+  return (n === 1) ? x : x * pow(x, n - 1);
+}
+/* What's happening, let's say x = 2, n = 3 
+  2 * pow(3 - 1)                          | 2 * 2 = 4 * 2
+    2 * pow(2 - 1)                        | 2 * 1 = 2
+      2 * pow(1 - 1) n == 1, thus stop    | 
+      The steps go up, as the result of the nested calculation is multiplied to the result of the calculation above it
+*/
+```
+The recursion depth is the amount of times the function is called and in most JS engines the maximal recursion depth is 10,000. The **call stack** is what allows the program to track and resolve function calls.
+## Resources
+- [Public APIs](https://github.com/n0shake/Public-APIs)

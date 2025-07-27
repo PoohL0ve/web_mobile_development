@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Survey Form</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 id="title">WLW Survey Form</h1>
+      <p id="description">Your opinions and feedback matter to us. Help us understand where we need to improve. All information shared in this form is confidential. We will not disclose who you are to anyone.</p>
+    </header>
+
+    <main>
+      <form id="survey-form" action="#" method="POST">
+
+        <fieldset>
+          <legend>Please provide your details</legend>
+          <label for="name" id="name-label">Name: </label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" maxlength="40" required >
+          <label for="email" id="email-label">Email: </label>
+          <input type="email" id="email" name="email" placeholder="jane@google.com" required >
+          <label for="number" id="number-label">Age: </label>
+          <input type="number" id="number" name="age" min="21" max="65" placeholder="35" required >
+        </fieldset>
+
+        <fieldset>
+          <legend>What is your identity?</legend>
+          <select name="identity" id="dropdown">
+            <optgroup label="sexuality">
+              <option value="lesbian">Lesbian</option>
+              <option value="bi-sexual">Bi-sexual</option>
+              <option value="queer" selected>Queer</option>
+              <option value="other">Other</option>
+            </optgroup>
+            <optgroup label="presentation">
+              <option value="stud">Stud</option>
+              <option value="femme">Femme</option>
+              <option value="no-label">No label</option>
+              <option value="stem">Stem</option>
+              <option value="other">Other</option>
+            </optgroup>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Is Having a Queer Friendship Important?</legend>
+          <label for="yes">Yes</label>
+          <input type="radio" id="yes" value="yes" name="friendship" checked>
+          <label for="no">No</label>
+          <input type="radio" id="no" value="no" name="friendship" >
+          <label ="maybe">Unsure</label>
+          <input type="radio" id="maybe" name="friendship" value="maybe" >
+        </fieldset>
+
+        <fieldset>
+          <legend>Where can we improve?</legend>
+          <label for="improve">Openness</label>
+          <input type="checkbox" id="improve" value="Openness" name="improve" >
+          <label for="respect">Respect</label>
+          <input type="checkbox" id="respect" value="respect" checked>
+        </fieldset>
+
+        <fieldset>
+          <legend>Do you have any more suggestions?</legend>
+          <label for="comments"> Comments:</label>          <textarea id="comments" rows="15" cols="25" ></textarea>
+        </fieldset>
+
+        <button type="submit" id="submit">Submit</button>
+
+      </form>
+    </main>
+  </body>
+</html>
